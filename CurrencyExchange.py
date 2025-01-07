@@ -16,9 +16,7 @@ def get_exchange_rate(from_currency: str, to_currency: str) -> float:
     response = requests.get(url)
     data = response.json()
     
-    # Check if the API call was successful
     if data['result'] == 'success':
-        # Extract the exchange rate for the target currency
         rate = data['conversion_rates'].get(to_currency)
         if rate:
             return rate
@@ -37,9 +35,10 @@ def convert_currency(amount: float, from_currency: str, to_currency: str) -> flo
         return None
 
 
-amount = 100
-from_currency = "USD"
-to_currency = "VND"
+
+from_currency = input("Enter the currecy you want to exchange from: ")
+to_currency = input("Enter the currecy you want to exchange to: ")
+amount = float(input("Enter the amount: "))
 
 converted_amount = convert_currency(amount, from_currency, to_currency)
 if converted_amount:
